@@ -6,4 +6,4 @@ Listado de vacunas
 
 Edición de una vacuna
 
-#Frontend localhost:4200 en /Frontend/Frontend/src/app --> ng serve
+#Frontend localhost:4200 en /Frontend/src/app --> ng serve
