@@ -1,0 +1,95 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<div class="row justify-content-center">
+    <h1 class="display-4">Mínim 1 Gerard Belvis</h1>    
+</div>
+
+<div class= "row justify-content-center">
+    <h4>Vacunas COVID</h4>
+</div>
+
+<div class="card-deck">
+    <div class="card text-white bg-info">
+        <div class="card-header">
+            <h5>Lista de Vacunas</h5>
+        </div>
+      <div class="card-body">
+        <p class="card-text">Esta es la lista de vacunas:</p>
+        <button class ="btn btn-light" (click)="getVacunas()">Refresh</button>
+        <ul class="list-group">
+            <li *ngFor="let vacuna of vacunaList; let i = index"
+            class="list-group-item list-group-item-action"
+            (click)="getVacuna(i)">
+            {{ vacuna.name }}
+            </li>
+        </ul>
+      </div>
+    </div>
+    <div class="card text-white bg-warning">
+        <div class="card-header">
+            <h5>Editar Vacuna</h5>
+        </div>
+      <div class="card-body">
+        <p class="card-text">Edita en este formulario lo que quieras</p>
+        <form [formGroup]="editVacunaForm" (ngSubmit)="editVacuna()">
+            <div class="form-group">
+                <label>Nombre</label>
+                <input [class.is-invalid]="editVacunaForm.get('vacunaNameEdit').touched && editVacunaForm.get('vacunaNameEdit').invalid" 
+                type="text" class="form-control" formControlName="vacunaNameEdit" placeholder="Vacuna name" [(ngModel)] = "selectedVacuna.name">
+            </div>
+            <div class="form-group">
+                <label>Descripcion</label>
+                <input [class.is-invalid]="editVacunaForm.get('vacunaDescriptionEdit').touched && editVacunaForm.get('vacunaDescriptionEdit').invalid" 
+                type="text" class="form-control" formControlName="vacunaDescriptionEdit" placeholder="Vacuna description" [(ngModel)] = "selectedVacuna.description">
+            </div>
+            <div class="form-group">
+                <label>Tecnologia</label>
+                <input [class.is-invalid]="editVacunaForm.get('vacunaTecnologyEdit').touched && editVacunaForm.get('vacunaTecnologyEdit').invalid" 
+                type="text" class="form-control" formControlName="vacunaTecnologyEdit" placeholder="Vacuna tecnology" [(ngModel)] = "selectedVacuna.tecnology">
+            </div>
+            <div class="form-group">
+                <label>Fecha de Aceptacion</label>
+                <input [class.is-invalid]="editVacunaForm.get('vacunaAcceptationDateEdit').touched && editVacunaForm.get('vacunaAcceptationDateEdit').invalid" 
+                type="text" class="form-control" formControlName="vacunaAcceptationDateEdit" placeholder="Vacuna acceptation date" [(ngModel)] = "selectedVacuna.acceptationdate">
+            </div>
+            <div class="span6" style="float: none; margin: 0 auto;">
+                <button class="btn btn-light" type="submit" [disabled]="!editVacunaForm.valid">Edita la Vacuna</button> 
+            </div>
+        </form>
+      </div>
+    </div>
+    <div class="card text-white bg-danger">
+        <div class="card-header">
+            <h5>Añadir Vacuna</h5>
+        </div>
+      <div class="card-body">
+        <p class="card-text">Añade una vacuna.</p>
+        <form [formGroup]="addVacunaForm" (ngSubmit)="addVacuna()">
+            <div class="form-group">
+                <label>Nombre</label>
+                <input [class.is-invalid]="addVacunaForm.get('vacunaNameInput').touched && addVacunaForm.get('vacunaNameInput').invalid" 
+                type="text" class="form-control" formControlName="vacunaNameInput" placeholder="Enter Vacuna name">
+            </div>
+            <div class="form-group">
+                <label>Descripcion</label>
+                <input [class.is-invalid]="addVacunaForm.get('vacunaDescriptionInput').touched && addVacunaForm.get('vacunaDescriptionInput').invalid" 
+                type="text" class="form-control" formControlName="vacunaDescriptionInput" placeholder="Enter Vacuna description">
+            </div>
+            <div class="form-group">
+                <label>Tecnologia</label>
+                <input [class.is-invalid]="addVacunaForm.get('vacunaTecnologyInput').touched && addVacunaForm.get('vacunaTecnologyInput').invalid" 
+                type="text" class="form-control" formControlName="vacunaTecnologyInput" placeholder="Enter Vacuna tecnology">
+            </div>
+            <div class="form-group">
+                <label>Fecha de Aceptacion</label>
+                <input [class.is-invalid]="addVacunaForm.get('vacunaAcceptationDateInput').touched && addVacunaForm.get('vacunaAcceptationDateInput').invalid" 
+                type="date" class="form-control" formControlName="vacunaAcceptationDateInput" placeholder="Enter Vacuna acceptation date">
+            </div>
+            <div class="span6" style="float: none; margin: 0 auto;">
+                <button class="btn btn-light" type="submit" [disabled]="!addVacunaForm.valid">Crea la Vacuna</button> 
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
